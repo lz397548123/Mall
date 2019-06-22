@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -1633,7 +1634,8 @@ public class Menu extends JFrame {
                     Sale sale = new Sale();
                     sale.setCommodity(commodity);
                     sale = new SaleService().QueryPriceAll(sale);
-                    String str =  "商品："+commodity+"\n"+"单价："+sale.getPrice()+"\n"+"数量："+sale.getNumber()+"\n"+"销售总额："+sale.getPriceAll();
+                    DecimalFormat df = new DecimalFormat("#.00");
+                    String str =  "商品："+commodity+"\n"+"单价："+sale.getPrice()+"\n"+"数量："+sale.getNumber()+"\n"+"销售总额："+df.format( sale.getPriceAll());
                     SaleInfo.setText(str);
                     right_4.add(SaleInfo);
                     right_4.updateUI();
