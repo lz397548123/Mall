@@ -10,7 +10,7 @@ package model;
 public class User {
     /**
      * 以下分别是管理员用户的信息，分别为：
-     *  用户名，密码，姓名，性别，部门，职务。
+     *  用户名，密码，姓名，性别，部门，职务，时间。
      */
     private String user;
     private String password;

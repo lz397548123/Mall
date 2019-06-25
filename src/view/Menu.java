@@ -63,7 +63,7 @@ public class Menu extends JFrame {
     private JTextField telephone_textworker;
     private JTextField address_textworker;
     private JTextArea cominfo, VIPInfo, WorkerInfo,SaleInfo;
-    private JTable browse_vip;
+    private JTable browse;
     private String user_id, user_name;
     private Timer loacl_time;
     private User user;
@@ -241,11 +241,11 @@ public class Menu extends JFrame {
 
 
             String[] com_title = {"编号","商品","厂商","类别","进价","数量","售价","总进价","进货时间"};
-            browse_vip = new JTable(com.getComInfo(),com_title);
-            browse_vip.setBounds(0, 0, 690, 500);
-            browse_vip.getTableHeader().setReorderingAllowed(false);
-            browse_vip.setEnabled(false);
-            JScrollPane jScrollPane = new JScrollPane(browse_vip);
+            browse = new JTable(com.getComInfo(),com_title);
+            browse.setBounds(0, 0, 690, 500);
+            browse.getTableHeader().setReorderingAllowed(false);
+            browse.setEnabled(false);
+            JScrollPane jScrollPane = new JScrollPane(browse);
             jScrollPane.setSize(690,500);
             right_1.add(jScrollPane);
             right_1.updateUI();
@@ -342,8 +342,19 @@ public class Menu extends JFrame {
             JButton commit = new JButton("提交");
             commit.setBounds(190, 221, 80, 27);
             commit.addActionListener(e110 -> {
+                String check1 = "^[0-9]*[1-9][0-9]*$";
                 String name = commodity_name_text.getText().trim();
                 String number = commodity_number_text.getText().trim();
+
+                if ("".equals(name) || "".equals(number)) {
+                    JOptionPane.showMessageDialog(null,  "商品名，数量均不能为空！！");
+                    return;
+                }
+                if(!number.matches(check1)) {
+                    JOptionPane.showMessageDialog(null,  "数量必须正整数");
+                    commodity_number_text.setText("");
+                    return;
+                }
 
                 Commodity com = new Commodity();
                 com.setCommodity(name);
@@ -522,27 +533,27 @@ public class Menu extends JFrame {
             com = new CommodityService().browseCommodity(com);
 
             String[] com_title = {"编号","商品","厂商","类别","进价","数量","售价","总进价","进货时间"};
-            browse_vip = new JTable(com.getComInfo(),com_title){
+            browse = new JTable(com.getComInfo(),com_title){
                 @Override
                 public boolean isCellEditable(int rowIndex, int ColIndex){
                     return false;
                 }
             };
-            browse_vip.setBounds(0, 0, 690, 500);
-            JScrollPane jScrollPane = new JScrollPane(browse_vip);
+            browse.setBounds(0, 0, 690, 500);
+            JScrollPane jScrollPane = new JScrollPane(browse);
             jScrollPane.setSize(690,500);
-            browse_vip.addMouseListener(new MouseAdapter() {
+            browse.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (e.getClickCount() == 2) {
-                        int count= browse_vip.getSelectedRow();
-                        String get1 = browse_vip.getValueAt(count, 0).toString();
-                        String get2 = browse_vip.getValueAt(count, 1).toString();
-                        String get3 = browse_vip.getValueAt(count, 2).toString();
-                        String get4 = browse_vip.getValueAt(count, 3).toString();
-                        String get5 = browse_vip.getValueAt(count, 4).toString();
-                        String get6 = browse_vip.getValueAt(count, 5).toString();
-                        String get7 = browse_vip.getValueAt(count, 6).toString();
+                        int count= browse.getSelectedRow();
+                        String get1 = browse.getValueAt(count, 0).toString();
+                        String get2 = browse.getValueAt(count, 1).toString();
+                        String get3 = browse.getValueAt(count, 2).toString();
+                        String get4 = browse.getValueAt(count, 3).toString();
+                        String get5 = browse.getValueAt(count, 4).toString();
+                        String get6 = browse.getValueAt(count, 5).toString();
+                        String get7 = browse.getValueAt(count, 6).toString();
                         new CommodityChange(Integer.parseInt(get1), get2, get3, get4, get5, get6, get7);
                     }
                 }
@@ -574,11 +585,11 @@ public class Menu extends JFrame {
             vip = new VIPService().browseVIP(vip);
 
             String[] vip_title = {"编号","账号","姓名","性别","住址","电话","折扣","注册时间"};
-            browse_vip = new JTable(vip.getVIPInfo(),vip_title);
-            browse_vip.setBounds(0, 0, 690, 500);
-            browse_vip.getTableHeader().setReorderingAllowed(false);
-            browse_vip.setEnabled(false);
-            JScrollPane jScrollPane = new JScrollPane(browse_vip);
+            browse = new JTable(vip.getVIPInfo(),vip_title);
+            browse.setBounds(0, 0, 690, 500);
+            browse.getTableHeader().setReorderingAllowed(false);
+            browse.setEnabled(false);
+            JScrollPane jScrollPane = new JScrollPane(browse);
             jScrollPane.setSize(690,500);
             right_2.add(jScrollPane);
             right_2.updateUI();
@@ -596,23 +607,23 @@ public class Menu extends JFrame {
             vip = new VIPService().browseVIP(vip);
 
             String[] vip_title = {"编号","账号","姓名","性别","住址","电话","折扣","注册时间"};
-            browse_vip = new JTable(vip.getVIPInfo(),vip_title);
-            browse_vip.setBounds(0, 0, 690, 500);
-            browse_vip = new JTable(vip.getVIPInfo(),vip_title){
+            browse = new JTable(vip.getVIPInfo(),vip_title);
+            browse.setBounds(0, 0, 690, 500);
+            browse = new JTable(vip.getVIPInfo(),vip_title){
                 @Override
                 public boolean isCellEditable(int rowIndex, int ColIndex){
                     return false;
                 }
             };
-            browse_vip.setBounds(0, 0, 690, 500);
-            JScrollPane jScrollPane = new JScrollPane(browse_vip);
+            browse.setBounds(0, 0, 690, 500);
+            JScrollPane jScrollPane = new JScrollPane(browse);
             jScrollPane.setSize(690,500);
-            browse_vip.addMouseListener(new MouseAdapter() {
+            browse.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (e.getClickCount() == 2) {
-                        int count= browse_vip.getSelectedRow();
-                        String vip_user = browse_vip.getValueAt(count, 1).toString();
+                        int count= browse.getSelectedRow();
+                        String vip_user = browse.getValueAt(count, 1).toString();
                         new PurchaseHistory(vip_user);
                     }
                 }
@@ -943,26 +954,26 @@ public class Menu extends JFrame {
             vip = new VIPService().browseVIP(vip);
 
             String[] vip_title = {"编号","账号","姓名","性别","住址","电话","折扣","注册时间"};
-            browse_vip = new JTable(vip.getVIPInfo(),vip_title);
-            browse_vip.setBounds(0, 0, 690, 500);
-            browse_vip = new JTable(vip.getVIPInfo(),vip_title){
+            browse = new JTable(vip.getVIPInfo(),vip_title);
+            browse.setBounds(0, 0, 690, 500);
+            browse = new JTable(vip.getVIPInfo(),vip_title){
                 @Override
                 public boolean isCellEditable(int rowIndex, int ColIndex){
                     return false;
                 }
             };
-            browse_vip.setBounds(0, 0, 690, 500);
-            JScrollPane jScrollPane = new JScrollPane(browse_vip);
+            browse.setBounds(0, 0, 690, 500);
+            JScrollPane jScrollPane = new JScrollPane(browse);
             jScrollPane.setSize(690,500);
-            browse_vip.addMouseListener(new MouseAdapter() {
+            browse.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
                             if (e.getClickCount() == 2) {
-                        int count= browse_vip.getSelectedRow();
-                        String get1 = browse_vip.getValueAt(count, 1).toString();
-                        String get2 = browse_vip.getValueAt(count, 2).toString();
-                        String get3 = browse_vip.getValueAt(count, 3).toString();
-                        String get4 = browse_vip.getValueAt(count, 6).toString();
+                        int count= browse.getSelectedRow();
+                        String get1 = browse.getValueAt(count, 1).toString();
+                        String get2 = browse.getValueAt(count, 2).toString();
+                        String get3 = browse.getValueAt(count, 3).toString();
+                        String get4 = browse.getValueAt(count, 6).toString();
                         new VIPPurchase(get1,get2,get3,get4);
                     }
                 }
@@ -994,11 +1005,11 @@ public class Menu extends JFrame {
             worker = new WorkerService().browseWorker(worker);
 
             String[] worker_title = {"工号","姓名","性别","年龄","部门","职务","电话","月薪","地址","状态","注册时间"};
-            browse_vip = new JTable(worker.getWorkerInfo(),worker_title);
-            browse_vip.setBounds(0, 0, 690, 500);
-            browse_vip.getTableHeader().setReorderingAllowed(false);
-            browse_vip.setEnabled(false);
-            JScrollPane jScrollPane = new JScrollPane(browse_vip);
+            browse = new JTable(worker.getWorkerInfo(),worker_title);
+            browse.setBounds(0, 0, 690, 500);
+            browse.getTableHeader().setReorderingAllowed(false);
+            browse.setEnabled(false);
+            JScrollPane jScrollPane = new JScrollPane(browse);
             jScrollPane.setSize(690,500);
             right_3.add(jScrollPane);
             right_3.updateUI();
@@ -1051,11 +1062,11 @@ public class Menu extends JFrame {
                     right_3.add(WorkerInfo);
                     right_3.updateUI();
                 } else  {
-                    String str = "编号："+worker.getId()+"\n"+"姓名: "+worker.getName()+"\n"+"性别："+worker.getSex()+"\n"
+                    String str = "编号："+worker.getId()+"      "+"注册时间："+worker.getTime()+"\n"+"姓名: "+worker.getName()+"\n"+"性别："+worker.getSex()+"\n"
                             +"年龄："+worker.getAge()+"\n"+"部门："+worker.getDepartment()+"\n"
                             +"职务："+ worker.getPost()+"\n"+"电话："+worker.getTelephone()+"\n"
                             +"月薪："+worker.getMonth_pay()+"\n"+"住址："+worker.getAddress()+"\n"
-                            +"状态："+worker.getStatus()+"          "+"注册时间："+worker.getTime();
+                            +"状态："+worker.getStatus();
                     WorkerInfo.setText(str);
                     right_3.add(WorkerInfo);
 
@@ -1322,11 +1333,11 @@ public class Menu extends JFrame {
                     right_3.add(WorkerInfo);
                     right_3.updateUI();
                 } else  {
-                    String str = "编号："+worker.getId()+"\n"+"姓名: "+worker.getName()+"\n"+"性别："+worker.getSex()+"\n"
+                    String str = "编号："+worker.getId()+"      "+"注册时间："+worker.getTime()+"\n"+"姓名: "+worker.getName()+"\n"+"性别："+worker.getSex()+"\n"
                             +"年龄："+worker.getAge()+"\n"+"部门："+worker.getDepartment()+"\n"
                             +"职务："+ worker.getPost()+"\n"+"电话："+worker.getTelephone()+"\n"
                             +"月薪："+worker.getMonth_pay()+"\n"+"住址："+worker.getAddress()+"\n"
-                            +"状态："+worker.getStatus()+"          "+"注册时间："+worker.getTime();
+                            +"状态："+worker.getStatus();
                     WorkerInfo.setText(str);
                     right_3.add(WorkerInfo);
 

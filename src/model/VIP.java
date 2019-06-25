@@ -10,7 +10,8 @@ package model;
 public class VIP {
     /**
      * 以下分别是VIP用户的信息，分别为：
-     *  用户名，密码，姓名，性别，住址，电话，折扣。
+     *  用户名，密码，姓名，性别，住址，电话，
+     *  折扣，时间，数据信息，商品，数量。
      */
     private int id;
     private String user;
@@ -82,9 +83,7 @@ public class VIP {
     public Object[][]  getVIPInfo() {
         return VIPInfo;
     }
-    public String setCommodity(String commodity) {
-        return this.commodity = commodity;
-    }
+    public String setCommodity(String commodity) {return this.commodity = commodity;}
     public String getCommodity() {
         return commodity;
     }

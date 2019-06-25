@@ -8,7 +8,10 @@ package model;
  * @Version: 1.0
  */
 public class Sale {
-
+    /**
+     * 以下分别是销售的信息，分别为：
+     *  编号，商品，数量，售价，总价，时间，数据信息。
+     */
     private int id;
     private String commodity;
     private int number;

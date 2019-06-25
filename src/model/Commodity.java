@@ -10,7 +10,7 @@ package model;
 public class Commodity {
     /**
      * 以下是商品信息，分别为：
-     *  编号，商品，厂商，类别，进价，数量，售价，总进价。
+     *  编号，商品，厂商，类别，进价，数量，售价，总进价，时间，数据信息。
      */
     private int id;
     private String commodity;

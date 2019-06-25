@@ -192,7 +192,7 @@ public class VIPService {
         return false;
     }
     /**
-     * 查询商品信息
+     * 查询VIP信息
      */
     public VIP selectVIP(VIP vip) {
         PreparedStatement preparedStatement = null;
@@ -339,7 +339,7 @@ public class VIPService {
         PreparedStatement preparedStatement2 = null;
         PreparedStatement preparedStatement3 = null;
         PreparedStatement preparedStatement4 = null;
-        Connection connection = null;
+        Connection connection;
         ResultSet resultSet = null;
         int changeFlag;
         int insertFlag;
@@ -426,6 +426,9 @@ public class VIPService {
                 }
                 if(preparedStatement3 != null) {
                     preparedStatement3.close();
+                }
+                if(preparedStatement4 != null) {
+                    preparedStatement4.close();
                 }
             } catch(SQLException e) {
                 e.printStackTrace();

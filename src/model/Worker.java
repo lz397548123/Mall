@@ -10,7 +10,8 @@ package model;
 public class Worker {
     /**
      * 以下分别是员工的信息，分别为：
-     *  工号，姓名，性别，年龄，部门，职务，电话，月薪，住址，状态。
+     *  工号，姓名，性别，年龄，部门，职务，
+     *  电话，月薪，住址，状态，时间，数据信息。
      */
     private int id;
     private String name;
